@@ -1,0 +1,4 @@
+node_modules/
+logs/parse
+logs/parse-dashboard
+package-lock.json

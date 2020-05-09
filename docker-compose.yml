@@ -1,0 +1,62 @@
+version: '3.7'
+services:
+  parse:
+    image: 'bitnami/parse:4.2.0'
+    user: root
+    ports:
+      - '1337:1337'
+    volumes:
+      #- './bitnami:/bitnami' 
+      - './bitnami/parse/config.json:/bitnami/parse/config.json' 
+      - './bitnami/parse/.initialized:/bitnami/parse/.initialized'
+      - './data/cloud:/opt/bitnami/parse/cloud/'
+      - './logs/parse:/opt/bitnami/parse/logs'
+    depends_on:
+    #  - mongodb
+      - pgdb_parse
+    #environment:
+    #  - PARSE_SERVER_CLOUD='--log-level=trace'
+  parse-dashboard:
+    image: 'bitnami/parse-dashboard:2.1.0'
+    user: root
+    restart: always
+    ports:
+      - '80:4040'
+    volumes:
+      #- './bitnami:/bitnami'
+      - './bitnami/parse-dashboard/config.json:/bitnami/parse-dashboard/config.json'
+      - './bitnami/parse-dashboard/.initialized:/bitnami/parse-dashboard/.initialized'
+      - './logs/parse-dashboard:/opt/bitnami/parse-dashboard/logs'
+    depends_on:
+      - parse
+    #environment:
+    #  - NAMI_DEBUG='--log-level=trace'
+  pgdb_parse:
+    image: postgres:9.6
+    user: root
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password123
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    volumes:
+     - 'pgdb_data:/var/lib/postgresql/data'
+  #mongodb:
+  #  image: 'bitnami/mongodb:4.0'
+  #  restart: always
+  #  volumes:
+  #    - 'mongodb_data:/bitnami_db'
+  #  - './data/mongo:/bitnami_db'
+  #  ports:
+  #    - '27017:27017'
+  #  environment:
+  #    - MONGODB_USERNAME=my_user
+  #    - MONGODB_PASSWORD=password123
+  #    - MONGODB_DATABASE=bitnami_parse_1BQR0
+volumes:
+  #mongodb_data:
+  #  driver: local
+  pgdb_data:
+    driver: local

@@ -1,0 +1,11 @@
+{
+  "appId": "myappID",
+  "masterKey": "mymasterKey",
+  "appName": "parse-server",
+  "mountPath": "/parse",
+  "port": "1337",
+  "host": "0.0.0.0",
+  "cloud": "./cloud/main.js",
+  "serverURL": "http://127.0.0.1:1337/parse",
+  "databaseURI": "mongodb://my_user:password123@mongodb:27017/bitnami_parse_1BQR0"
+}

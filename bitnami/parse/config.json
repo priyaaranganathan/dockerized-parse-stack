@@ -1,0 +1,12 @@
+{
+    "appId": "myappID",
+    "masterKey": "mymasterKey",
+    "appName": "parse-server",
+    "mountPath": "/parse",
+    "port": "1337",
+    "host": "0.0.0.0",
+    "cloud": "./cloud/main.js",
+    "serverURL": "http://127.0.0.1:1337/parse",
+    "databaseURI": "postgres://postgres:password123@pgdb_parse:5432/postgres",
+    "jsonLogs": true
+}

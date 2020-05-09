@@ -1,0 +1,416 @@
+{
+	"info": {
+		"_postman_id": "bae081c1-e46b-464c-8684-82f6383e2071",
+		"name": "Parse Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "tests",
+			"item": [
+				{
+					"name": "Login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PARSE_HOST}}:{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}/login?username={{PARSE_USER}}&password={{PARSE_PASS}}",
+							"host": [
+								"{{PARSE_HOST}}"
+							],
+							"port": "{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}",
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "{{PARSE_USER}}"
+								},
+								{
+									"key": "password",
+									"value": "{{PARSE_PASS}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Organization GET",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Parse-Session-Token",
+								"value": "{{sessionToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{PARSE_HOST}}:{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}/classes/Organization",
+							"host": [
+								"{{PARSE_HOST}}"
+							],
+							"port": "{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}",
+							"path": [
+								"classes",
+								"Organization"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Organization - fetch users GET",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Parse-Session-Token",
+								"value": "{{sessionToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{PARSE_HOST}}:{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}/classes/Organization",
+							"host": [
+								"{{PARSE_HOST}}"
+							],
+							"port": "{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}",
+							"path": [
+								"classes",
+								"Organization"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"description": "To fetch users within specific organization see User GET",
+									"disabled": true
+								},
+								{
+									"key": "include",
+									"value": "TestPointer",
+									"description": "add TestPointer object to response",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Roles of specific User GET",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Parse-Session-Token",
+								"value": "{{sessionToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{PARSE_HOST}}:{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}/classes/_Role?where={\"users\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"{{userObjectId}}\"}}",
+							"host": [
+								"{{PARSE_HOST}}"
+							],
+							"port": "{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}",
+							"path": [
+								"classes",
+								"_Role"
+							],
+							"query": [
+								{
+									"key": "where",
+									"value": "{\"users\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"{{userObjectId}}\"}}",
+									"description": "working"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User GET",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Parse-Session-Token",
+								"value": "{{sessionToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{PARSE_HOST}}:{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}/classes/_User?where={\"$relatedTo\": {\"object\":{\"__type\":\"Pointer\",\"className\":\"Organization\",\"objectId\":\"{{organizationObjectId}}\"},\"key\":\"Users\"}}",
+							"host": [
+								"{{PARSE_HOST}}"
+							],
+							"port": "{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}",
+							"path": [
+								"classes",
+								"_User"
+							],
+							"query": [
+								{
+									"key": "where",
+									"value": "{\"$relatedTo\": {\"object\":{\"__type\":\"Pointer\",\"className\":\"Organization\",\"objectId\":\"{{organizationObjectId}}\"},\"key\":\"Users\"}}",
+									"description": "Users within specific Organization"
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "skip",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "keys",
+									"value": "username",
+									"disabled": true
+								},
+								{
+									"key": "excludeKeys",
+									"value": "username",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role GET",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Parse-Session-Token",
+								"value": "{{sessionToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{PARSE_HOST}}:{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}/classes/_Role",
+							"host": [
+								"{{PARSE_HOST}}"
+							],
+							"port": "{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}",
+							"path": [
+								"classes",
+								"_Role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "B GET relation test",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Parse-Session-Token",
+								"value": "{{sessionToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{PARSE_HOST}}:{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}/classes/B?where={\"$relatedTo\": {\"object\":{\"__type\":\"Pointer\",\"className\":\"A\",\"objectId\":\"6Ig3kWBG7J\"},\"key\":\"B\"}}",
+							"host": [
+								"{{PARSE_HOST}}"
+							],
+							"port": "{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}",
+							"path": [
+								"classes",
+								"B"
+							],
+							"query": [
+								{
+									"key": "where",
+									"value": "{\"$relatedTo\": {\"object\":{\"__type\":\"Pointer\",\"className\":\"A\",\"objectId\":\"6Ig3kWBG7J\"},\"key\":\"B\"}}",
+									"description": "working examle from https://github.com/parse-community/parse-server/issues/6267",
+									"disabled": true
+								},
+								{
+									"key": "where",
+									"value": "{\"$relatedTo\": {\"object\":{\"__type\":\"Pointer\",\"className\":\"A\",\"objectId\":\"6Ig3kWBG7J\"},\"key\":\"B\"}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File GET",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Parse-Session-Token",
+								"value": "{{sessionToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{PARSE_HOST}}:{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}/classes/File",
+							"host": [
+								"{{PARSE_HOST}}"
+							],
+							"port": "{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}",
+							"path": [
+								"classes",
+								"File"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cloud Code",
+			"item": [
+				{
+					"name": "/functions/sayHelloWorld POST",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PARSE_HOST}}:{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}/functions/sayHelloWorld",
+							"host": [
+								"{{PARSE_HOST}}"
+							],
+							"port": "{{PARSE_PORT_NUMBER}}{{PARSE_MOUNT_PATH}}",
+							"path": [
+								"functions",
+								"sayHelloWorld"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "serverURL": "http://localhost:1337/parse",
+      "appId": "myappID",
+      "masterKey": "mymasterKey",
+      "appName": "MyDashboard"
+    }
+  ],
+  "users": [
+    {
+      "user": "user",
+      "pass": "bitnami"
+    }
+  ]
+}
