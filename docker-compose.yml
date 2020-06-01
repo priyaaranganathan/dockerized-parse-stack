@@ -2,7 +2,7 @@ version: '3.7'
 services:
   parse:
     image: 'bitnami/parse:4.2.0'
-    user: root
+    #user: root
     ports:
       - '1337:1337'
     volumes:
@@ -18,7 +18,7 @@ services:
     #  - PARSE_SERVER_CLOUD='--log-level=trace'
   parse-dashboard:
     image: 'bitnami/parse-dashboard:2.1.0'
-    user: root
+    #user: root
     restart: always
     ports:
       - '80:4040'
